@@ -13,21 +13,23 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    label: "Interface",
-    skills: ["React", "TypeScript", "Tailwind CSS"],
+    label: "Frontend",
+    skills: ["React", "TypeScript", "Tailwind CSS", "JavaScript"],
   },
   {
-    label: "Server",
-    skills: ["Next.js"],
+    label: "Backend",
+    skills: ["Next.js", "Node.js", "Python", "FastAPI", "Flask", "Laravel"],
   },
   {
-    // e.g. databases, queues, storage — empty groups stay off the page
     label: "Data",
-    skills: [],
+    skills: ["PostgreSQL", "MySQL", "Supabase", "Redis"],
   },
   {
-    // e.g. CI, hosting, observability — empty groups stay off the page
-    label: "Delivery",
-    skills: [],
+    label: "Infrastructure",
+    skills: ["Docker", "Docker Compose", "Nginx", "Linux", "GitHub Actions"],
+  },
+  {
+    label: "AI",
+    skills: ["Python", "LLM APIs", "Tool-using agents"],
   },
 ];

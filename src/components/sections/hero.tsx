@@ -17,10 +17,10 @@ export function Hero() {
         </h1>
 
         <p className="max-w-[62ch] font-serif text-lg leading-relaxed text-slate md:col-span-7 md:text-xl">
-          Full-stack development for founders, agencies, and teams: new
-          features, API integrations, debugging, and deployment — whether
-          we&apos;re starting from an empty repository or an existing
-          codebase.
+          Full-stack development, server setup, and migrations for founders,
+          agencies, and teams: new features, integrations, debugging, and
+          deployment — whether we&apos;re starting from an empty repository, an
+          existing codebase, or a live production system.
         </p>
 
         <div className="flex flex-col gap-4 border-t border-line pt-5 md:col-span-12 md:flex-row md:items-baseline md:justify-between">

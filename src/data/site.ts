@@ -35,11 +35,11 @@ export type SiteConfig = {
 
 export const site: SiteConfig = {
   // ---- Replace the four values below with your real details ----
-  name: "Your Name",
+  name: "Farhan",
   role: "Full-stack developer",
   description:
     "Full-stack developer building, fixing, and shipping web applications — new features, API integrations, and deployment for founders, agencies, and teams.",
-  email: "you@example.com",
+  email: "farhanweb20@gmail.com",
   siteUrl: "",
   // ---------------------------------------------------------------
 
@@ -49,7 +49,7 @@ export const site: SiteConfig = {
   },
 
   links: [
-    { label: "GitHub", href: "https://github.com/your-handle" },
+    { label: "GitHub", href: "https://github.com/farhan-t-dev" },
     { label: "LinkedIn", href: "https://linkedin.com/in/your-handle" },
   ],
 };
