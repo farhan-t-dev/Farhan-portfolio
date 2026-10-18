@@ -35,7 +35,7 @@ export type SiteConfig = {
 
 export const site: SiteConfig = {
   // ---- Replace the four values below with your real details ----
-  name: "Farhan",
+  name: "Tan Farhan",
   role: "Full-stack developer",
   description:
     "Full-stack developer building, fixing, and shipping web applications — new features, API integrations, and deployment for founders, agencies, and teams.",
