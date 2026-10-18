@@ -27,12 +27,14 @@ export function Hero() {
           {site.availability ? (
             <p className="flex items-center gap-2.5 text-sm text-slate">
               {/* Status is a claim from site.ts; the dot is decorative and
-                  carries no colour the label doesn't already state. */}
+                  carries no colour the label doesn't already state. Green
+                  means open; anything else is muted, since red would read
+                  as "unavailable" rather than "live". */}
               <span
                 aria-hidden="true"
                 className={
                   site.availability.status === "available"
-                    ? "size-2 shrink-0 rounded-full bg-signal"
+                    ? "size-2 shrink-0 rounded-full bg-available"
                     : "size-2 shrink-0 rounded-full bg-line"
                 }
               />

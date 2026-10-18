@@ -2,8 +2,10 @@
 
 /* ------------------------------------------------------------------ *
  * Design tokens — "The Handover"
- * Six colours, two type families. Red is the only accent and it is
- * reserved for status, structure, and interaction — never decoration.
+ * Seven colours, two type families. Red is the accent and it is
+ * reserved for structure and interaction — never decoration. Green is
+ * the single exception, and only for the "available" status: red
+ * reads as unavailable/busy, so open-for-work gets its own signal.
  * ------------------------------------------------------------------ */
 
 @theme {
@@ -14,6 +16,12 @@
   --color-slate: #565653;
   --color-line: #dcdcd7;
   --color-signal: #e30613;
+  /* Reserved for the "available" status dot alone — red reads as
+   * unavailable, so open-for-work needs a distinct signal. 5.02:1 on
+   * paper (3:1 is the bar for a graphical dot). Booked/unavailable stay
+   * on --color-line, which is deliberately near-invisible: no claim is
+   * being made. */
+  --color-available: #15803d;
 
   /* Type — families are injected as CSS variables by next/font. */
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;

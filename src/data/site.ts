@@ -23,7 +23,7 @@ export type SiteConfig = {
   siteUrl: string;
   /**
    * The availability indicator. This is a claim only you can make:
-   * - `available`  -> red "live" dot, open for new projects
+   * - `available`  -> green "open" dot, open for new projects
    * - `booked`     -> muted dot, currently at capacity
    * - `unavailable`-> muted dot, not taking work
    * Set to `null` to hide the indicator entirely.
