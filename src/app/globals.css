@@ -57,12 +57,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Visible keyboard focus everywhere, in signal red. */
-  :focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 2px;
-  }
-
   /* Honour reduced motion: collapse transitions/animations, keep state changes. */
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -77,4 +71,25 @@
       scroll-behavior: auto !important;
     }
   }
+}
+
+/* ------------------------------------------------------------------ *
+ * Focus indicator — deliberately OUTSIDE any @layer.
+ *
+ * Tailwind v4 puts utilities in the `utilities` layer, which is ordered
+ * after `base`. Our links use `transition-colors`, and that utility lists
+ * `outline-color` among the properties it transitions — so a focus ring on
+ * such a link FADES from the element's own colour to red over 150ms instead
+ * of snapping on. An animated focus indicator is slow to notice and, on
+ * dark backgrounds, briefly near-invisible.
+ *
+ * Unlayered rules outrank every @layer in the cascade regardless of
+ * specificity, so this both wins the outline colour and strips
+ * outline-color from the transition without needing !important.
+ * ------------------------------------------------------------------ */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
 }
