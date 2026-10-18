@@ -28,10 +28,11 @@ export default async function ProjectPage({ params }: PageProps) {
 
   if (!project) notFound();
 
+  // The root layout owns <main>; this renders the detail body only.
+  // Full template (hero image, problem/approach/outcome, links) is Stage 4.
   return (
-    <main>
-      {/* TODO: hero image, description, tech tags, live/repo links */}
-      <h1>{project.title}</h1>
-    </main>
+    <article className="shell gutter py-24">
+      <h1 className="font-display text-4xl">{project.title}</h1>
+    </article>
   );
 }
