@@ -22,8 +22,8 @@ export default function Home() {
       <Hero />
       <Work />
       <Services />
-      <Stack />
       <Process />
+      <Stack />
       <About />
       <Contact />
     </>

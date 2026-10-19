@@ -54,7 +54,28 @@
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-behavior: smooth;
+  }
+
+  /* Smooth anchor scrolling only when motion is welcome; the default
+   * (auto) applies under reduced motion, so no override is needed. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Sticky header height (56px mobile, 64px ≥768px): anchor targets
+   * stop just below the bar, so section headings are never hidden.
+   * scroll-padding on the scrollport also covers focus scrolls
+   * (e.g. Shift+Tab up the page), not just anchor jumps. */
+  html {
+    scroll-padding-top: 56px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 64px;
+    }
   }
 
   body {
@@ -67,9 +88,6 @@
 
   /* Honour reduced motion: collapse transitions/animations, keep state changes. */
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
     *,
     *::before,
     *::after {

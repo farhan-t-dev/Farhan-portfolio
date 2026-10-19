@@ -54,9 +54,13 @@ export const site: SiteConfig = {
   ],
 };
 
-/** Navigation for the site header. Process and Contact are homepage anchors (Stage 3). */
+/**
+ * Section links for the site header, in homepage section order.
+ * Contact is not here: it renders as the header's filled button.
+ */
 export const navLinks: NavLink[] = [
   { label: "Work", href: "/work" },
+  { label: "Services", href: "/#services" },
   { label: "Process", href: "/#process" },
-  { label: "Contact", href: "/#contact" },
+  { label: "About", href: "/#about" },
 ];
