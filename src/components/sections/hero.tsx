@@ -17,7 +17,7 @@ export function Hero() {
         </h1>
 
         <p className="max-w-[62ch] font-serif text-lg leading-relaxed text-slate md:col-span-7 md:text-xl">
-          Full-stack development, server setup, and migrations for founders,
+          Full-stack development, AI, server setup, and migrations for founders,
           agencies, and teams: new features, integrations, debugging, and
           deployment — whether we&apos;re starting from an empty repository, an
           existing codebase, or a live production system.

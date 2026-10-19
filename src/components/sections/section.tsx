@@ -11,6 +11,13 @@ type SectionProps = {
    * `mist` is the alternate band (About); `paper` is the default.
    */
   tone?: "paper" | "mist" | "ink";
+  /**
+   * Vertical padding override, merged over the default rhythm. Only
+   * Process opts in: it is a deliberately half-height band, so its four
+   * steps do not carry the full section padding. Every other section
+   * inherits the default and renders exactly as before.
+   */
+  pad?: string;
   children: React.ReactNode;
 };
 
@@ -26,7 +33,13 @@ type SectionProps = {
  * clear responsibility (grid placement + band treatment + heading),
  * not a file per section fragment.
  */
-export function Section({ id, label, tone = "paper", children }: SectionProps) {
+export function Section({
+  id,
+  label,
+  tone = "paper",
+  pad = "py-14 md:py-20 lg:py-24",
+  children,
+}: SectionProps) {
   const dark = tone === "ink";
 
   return (
@@ -40,7 +53,11 @@ export function Section({ id, label, tone = "paper", children }: SectionProps) {
         dark && "bg-ink text-paper",
       )}
     >
-      <div className="shell gutter grid grid-cols-1 gap-x-6 gap-y-5 py-14 md:grid-cols-12 md:py-20 lg:py-24">
+      {/* `pad` lands last so tailwind-merge resolves it over the default. */}
+      <div className={cn(
+        "shell gutter grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-12",
+        pad,
+      )}>
         <div className="md:col-span-4 lg:col-span-2">
           <h2
             className={cn(

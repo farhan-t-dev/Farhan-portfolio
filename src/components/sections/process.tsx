@@ -12,40 +12,38 @@ import { Section } from "./section";
 const steps = [
   {
     number: "01",
-    title: "Scope",
-    body: "What exists, what's missing, and what done has to look like. I read before I quote.",
+    title: "Scope and plan",
+    body: "I read the existing code or system before quoting, then send a written plan with risks.",
   },
   {
     number: "02",
-    title: "Plan",
-    body: "The approach, the order of work, and anything I'd flag as a risk — written down before code moves.",
+    title: "Build",
+    body: "Small changes you can review as they land.",
   },
   {
     number: "03",
-    title: "Build",
-    body: "Working in the open: small, reviewable changes you can see as they land.",
+    title: "Test and ship",
+    body: "Tested on real devices, deployed with recorded release steps.",
   },
   {
     number: "04",
-    title: "Verify",
-    body: "Tested against the cases that matter, checked at real viewport sizes, keyboard and screen reader included.",
-  },
-  {
-    number: "05",
-    title: "Ship",
-    body: "Deployed to production, with the environment and release steps recorded rather than assumed.",
-  },
-  {
-    number: "06",
     title: "Hand over",
-    body: "Documentation and a walkthrough, so the next person — you or a teammate — can carry it forward.",
+    body: "Documentation and a walkthrough, so anyone can continue the work.",
   },
 ];
 
 export function Process() {
   return (
-    <Section id="process" label="Process" tone="ink">
-      <ol className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+    <Section
+      id="process"
+      label="Process"
+      tone="ink"
+      // Half-height band: four steps in one desktop row need far less
+      // vertical air than the six-step, two-row version did.
+      pad="py-8 md:py-10 lg:py-12"
+    >
+      {/* Mobile: one column. Tablet: 2x2. Desktop: one row of four. */}
+      <ol className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, index) => (
           <li key={step.number} className="border-t border-signal pt-4">
             <div className="flex items-baseline gap-3">

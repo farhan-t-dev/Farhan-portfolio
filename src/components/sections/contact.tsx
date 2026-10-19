@@ -21,8 +21,7 @@ export function Contact() {
       <div className="max-w-[54ch]">
         <p className="font-serif text-xl leading-relaxed text-ink md:text-2xl">
           The fastest way to start is a link to the repository and a
-          description of what you need — a feature, a fix, or a deployment
-          that keeps slipping.
+          description of what you need — a feature, a fix, or a smooth deployment.
         </p>
 
         <p className="mt-8">
