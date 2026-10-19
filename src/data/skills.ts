@@ -18,18 +18,18 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "Backend",
-    skills: ["Next.js", "Node.js", "Python", "FastAPI", "Flask", "Laravel"],
+    skills: ["Next.js", "Node.js", "Python", "FastAPI", "Laravel"],
   },
   {
     label: "Data",
     skills: ["PostgreSQL", "MySQL", "Supabase", "Redis"],
   },
   {
-    label: "Infrastructure",
+    label: "Devops/Infrastructure",
     skills: ["Docker", "Docker Compose", "Nginx", "Linux", "GitHub Actions"],
   },
   {
     label: "AI",
-    skills: ["Python", "LLM APIs", "Tool-using agents"],
+    skills: ["Langchain", "LLM APIs", "Tool-using agents"],
   },
 ];
