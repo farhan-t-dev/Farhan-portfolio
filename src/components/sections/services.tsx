@@ -38,12 +38,16 @@ export function Services() {
         {services.map((service) => (
           <li
             key={service.title}
-            className="grid grid-cols-1 gap-x-6 gap-y-1 border-b border-line py-5 md:grid-cols-12 md:py-6"
+            className="grid grid-cols-1 gap-x-6 gap-y-1 border-b border-line py-5 md:grid-cols-12 md:gap-y-2 md:py-6"
           >
-            <h3 className="text-lg font-semibold tracking-tight md:col-span-4 lg:col-span-3">
+            {/* Stacked until lg. At 768–1023 the indented content column
+                leaves the body about 308px (~43ch) beside the title, so
+                the prose wraps on almost every line; full width restores
+                the measure. Same treatment as the Work rows. */}
+            <h3 className="text-lg font-semibold tracking-tight md:col-span-12 lg:col-span-3">
               {service.title}
             </h3>
-            <p className="max-w-[62ch] font-serif text-base leading-relaxed text-slate md:col-span-8 lg:col-span-9">
+            <p className="max-w-[62ch] font-serif text-base leading-relaxed text-slate md:col-span-12 lg:col-span-9">
               {service.body}
             </p>
           </li>

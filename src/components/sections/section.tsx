@@ -18,14 +18,6 @@ type SectionProps = {
    * inherits the default and renders exactly as before.
    */
   pad?: string;
-  /**
-   * Full-width variant: the label sits above the content instead of in
-   * the first two columns, so the content can use every column of the
-   * shell. Only Work opts in — the index is the page's proof, and a
-   * thumbnail column only fits if the rows are not already indented by
-   * two columns of label.
-   */
-  wide?: boolean;
   children: React.ReactNode;
 };
 
@@ -46,7 +38,6 @@ export function Section({
   label,
   tone = "paper",
   pad = "py-14 md:py-20 lg:py-24",
-  wide = false,
   children,
 }: SectionProps) {
   const dark = tone === "ink";
@@ -73,23 +64,16 @@ export function Section({
         dark && "bg-ink text-paper",
       )}
     >
-      {wide ? (
-        <div className={cn("shell gutter", pad)}>
-          {heading}
-          <div className="mt-5">{children}</div>
-        </div>
-      ) : (
-        /* `pad` lands last so tailwind-merge resolves it over the default. */
-        <div
-          className={cn(
-            "shell gutter grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-12",
-            pad,
-          )}
-        >
-          <div className="md:col-span-4 lg:col-span-2">{heading}</div>
-          <div className="md:col-span-8 lg:col-span-10">{children}</div>
-        </div>
-      )}
+      {/* `pad` lands last so tailwind-merge resolves it over the default. */}
+      <div
+        className={cn(
+          "shell gutter grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-12",
+          pad,
+        )}
+      >
+        <div className="md:col-span-4 lg:col-span-2">{heading}</div>
+        <div className="md:col-span-8 lg:col-span-10">{children}</div>
+      </div>
     </section>
   );
 }

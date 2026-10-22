@@ -13,8 +13,9 @@ import { SiteNav } from "./site-nav";
  *
  * Responsive decision (first-class, not an afterthought):
  * - One row at every width — no wrapping, no hamburger, no menu state.
- * - Mobile keeps name left and the Contact button right; the section
- *   links hide below 768px.
+ * - Mobile keeps name left, then Work and the Contact button right. The
+ *   homepage anchor links hide below 768px; Work stays because /work is
+ *   a separate route with no other entry point.
  * Server component: the only client JS is the scroll listener, kept in
  * its own small component.
  */

@@ -15,7 +15,7 @@ export const projects: Project[] = [
     title: "Fletched",
     description:
       "App Store release, website and database fixes for an archery ballistics product. Took the app through App Store deployment, built the website, and fixed Supabase database issues.",
-    image: "/projects/fletched.png",
+    image: "/projects/fletched.webp",
     tags: ["React", "Vite", "Tailwind CSS", "Supabase", "App Store"],
     liveUrl: "https://fletchedco.com",
     featured: true,

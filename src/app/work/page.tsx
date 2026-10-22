@@ -85,8 +85,13 @@ export default function WorkPage() {
       </header>
 
       <ul className="mt-10 grid grid-cols-1 border-t border-line lg:grid-cols-2">
-        {projects.map((project) => (
-          <ProjectTile key={project.slug} project={project} heading="h2" />
+        {projects.map((project, index) => (
+          <ProjectTile
+            key={project.slug}
+            project={project}
+            heading="h2"
+            eager={index === 0}
+          />
         ))}
       </ul>
 

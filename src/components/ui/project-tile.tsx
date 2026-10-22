@@ -9,6 +9,8 @@ type ProjectTileProps = {
   project: Project;
   /** h2 under the page title; no section label sits between them. */
   heading?: "h2" | "h3";
+  /** First tile: its screenshot is the page's LCP. */
+  eager?: boolean;
 };
 
 /**
@@ -26,7 +28,11 @@ type ProjectTileProps = {
  * The screenshot is the way in, so the title link stretches over the
  * whole cell. Outbound links sit above that overlay.
  */
-export function ProjectTile({ project, heading: Heading = "h2" }: ProjectTileProps) {
+export function ProjectTile({
+  project,
+  heading: Heading = "h2",
+  eager = false,
+}: ProjectTileProps) {
   const links = [
     { label: "Live site", url: project.liveUrl },
     { label: "Repository", url: project.repoUrl },
@@ -52,6 +58,7 @@ export function ProjectTile({ project, heading: Heading = "h2" }: ProjectTilePro
 
       <ProjectThumb
         project={project}
+        eager={eager}
         sizes="(min-width: 1024px) 46vw, 100vw"
         className="mt-3 aspect-[16/10] w-full"
       />

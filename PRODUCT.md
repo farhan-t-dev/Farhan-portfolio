@@ -56,7 +56,7 @@ The owner's stated personal register is informal and unpolished (the existing Ab
 ## Evidence on Hand
 
 - Eight project entries with real descriptions, tags, and outcomes; two with public repository links (PropManage, MarketFlow), several with live URLs.
-- One project screenshot: `public/projects/fletched.png`. The other seven projects reference `/projects/<slug>.png` files that do not exist yet; the owner has confirmed they will be supplied at those paths, so listings stay in place rather than being hidden.
+- One project screenshot: `public/projects/fletched.webp` (converted from the supplied PNG, 1.65 MB → 78 KB). The other seven projects reference `/projects/<slug>.png` files that do not exist yet; the owner has confirmed they will be supplied at those paths, so listings stay in place rather than being hidden.
 - One portrait: `public/images/Me.webp` (1031×1375).
 - An icon at `src/app/icon.svg`.
 - Absent, and not to be fabricated: testimonials, client names beyond the products themselves, performance metrics, pricing, timelines, case-study results, or press.

@@ -24,17 +24,22 @@ export function Contact() {
           description of what you need — a feature, a fix, or a smooth deployment.
         </p>
 
+        {/* The address is the widest unbreakable string on the page. The
+            clamp floor is 1.2rem, not 1.5rem: at 320px it rendered 335px
+            wide against 280px of available gutter and forced a page-level
+            horizontal scrollbar. The floor keeps it inside a 320px
+            viewport; `break-words` is the last-resort guard below that. */}
         <p className="mt-8">
           {hasEmail ? (
             <a
               href={`mailto:${site.email}`}
-              className="font-display text-[clamp(1.5rem,4vw,2.5rem)] text-ink underline decoration-line underline-offset-[0.2em] transition-colors hover:decoration-signal"
+              className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-line underline-offset-[0.2em] transition-colors hover:decoration-signal break-words"
             >
               {site.email}
             </a>
           ) : (
             // Clearly marked dev placeholder — not a visitor-facing string.
-            <span className="font-display text-[clamp(1.5rem,4vw,2.5rem)] text-slate">
+            <span className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-slate break-words">
               <span className="sr-only">Development placeholder: </span>
               add email in src/data/site.ts
             </span>

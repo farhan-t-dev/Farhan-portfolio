@@ -9,6 +9,13 @@ type ProjectThumbProps = {
   /** Rendered `sizes` for the slot the thumb fills. */
   sizes: string;
   className?: string;
+  /**
+   * Above-the-fold image. `loading="eager"` (not Next 16's deprecated
+   * `priority`) — the screenshot on the first /work tile is the LCP, and
+   * lazy-loading it delays the largest paint. Every other thumb stays
+   * lazy.
+   */
+  eager?: boolean;
 };
 
 /**
@@ -23,7 +30,12 @@ type ProjectThumbProps = {
  * Existence is checked at build time (src/lib/media.ts), so dropping the
  * PNG into public/projects/ and rebuilding is the whole workflow.
  */
-export function ProjectThumb({ project, sizes, className }: ProjectThumbProps) {
+export function ProjectThumb({
+  project,
+  sizes,
+  className,
+  eager = false,
+}: ProjectThumbProps) {
   if (!publicAssetExists(project.image)) return null;
 
   return (
@@ -33,6 +45,8 @@ export function ProjectThumb({ project, sizes, className }: ProjectThumbProps) {
         alt={`${project.title} screenshot`}
         fill
         sizes={sizes}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : "auto"}
         className="object-cover object-top"
       />
     </div>

@@ -11,10 +11,11 @@ import { Section } from "./section";
  * where the ask is made. Featured entries only; the complete index is
  * /work, which this links to.
  *
- * This is the one full-width section (Section's `wide` variant): the
- * thumbnail column takes the two columns the label hangs in, so the label
- * moves above the index. At the usual indented width a thumbnail squeezed
- * the summaries to about 40 characters a line.
+ * The homepage band is a typographic index, not a contact sheet: the
+ * label sits in the same left rail as every other section, and each row
+ * puts the title and stack on the left with the summary on the right.
+ * Screenshots live on /work, where a two-column plate is wide enough to
+ * read as evidence — here they would force the label out of the rail.
  *
  * Renders nothing when nothing is featured: an unfinished data file
  * costs the homepage a section, not an empty band on the page.
@@ -25,7 +26,7 @@ export function Work() {
   if (featured.length === 0) return null;
 
   return (
-    <Section id="work" label="Work" wide>
+    <Section id="work" label="Work">
       <ul className="border-t border-line">
         {featured.map((project) => (
           <ProjectRow key={project.slug} project={project} />
