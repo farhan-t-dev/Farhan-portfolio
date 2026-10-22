@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import type { Project } from "@/data/projects";
 import { isExternalUrl } from "@/lib/utils";
+import { ArrowRight } from "./icons";
 
 type ProjectRowProps = {
   project: Project;
@@ -23,6 +24,12 @@ type ProjectRowProps = {
  * survive a project whose screenshot has not been added yet, and the
  * case study page is where imagery belongs.
  *
+ * The title link stretches over the whole row, so the row can be opened
+ * from anywhere along it — the summary says each entry opens a page, and
+ * a 20px-high title alone was a thin target on touch. Outbound links sit
+ * above that overlay, and the arrow marks the row as a way in without
+ * turning it into a card.
+ *
  * Links are filtered through isExternalUrl: a placeholder like
  * "https://<site-url>" in projects.ts renders as no link at all, never
  * as a broken anchor.
@@ -36,14 +43,15 @@ export function ProjectRow({ project, heading: Heading = "h3" }: ProjectRowProps
   );
 
   return (
-    <li className="grid grid-cols-1 gap-x-6 gap-y-2 border-b border-line py-5 md:grid-cols-12 md:py-6">
-      <div className="md:col-span-4 lg:col-span-3">
-        <Heading className="text-lg font-semibold tracking-tight">
+    <li className="group relative grid grid-cols-1 gap-x-6 gap-y-2 border-b border-line py-5 transition-colors duration-150 hover:bg-mist/60 focus-within:bg-mist/60 md:grid-cols-12 md:py-6">
+      <div className="min-w-0 md:col-span-4 lg:col-span-3">
+        <Heading className="text-lg font-semibold tracking-tight [overflow-wrap:anywhere]">
           <Link
             href={`/projects/${project.slug}`}
-            className="underline decoration-line underline-offset-4 transition-colors hover:decoration-signal"
+            className="underline decoration-line underline-offset-4 transition-colors after:absolute after:inset-0 after:content-[''] hover:decoration-signal"
           >
             {project.title}
+            <span className="sr-only"> — case study</span>
           </Link>
         </Heading>
 
@@ -56,20 +64,20 @@ export function ProjectRow({ project, heading: Heading = "h3" }: ProjectRowProps
         )}
       </div>
 
-      <div className="md:col-span-8 lg:col-span-9">
+      <div className="min-w-0 md:col-span-8 md:pr-7 lg:col-span-9">
         <p className="max-w-[62ch] font-serif text-base leading-relaxed text-slate">
           {project.description}
         </p>
 
         {links.length > 0 && (
-          <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <ul className="relative z-10 mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
             {links.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.url}
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="text-slate underline-offset-4 transition-colors hover:text-ink hover:underline"
+                  className="inline-flex min-h-6 items-center text-slate underline-offset-4 transition-colors hover:text-ink hover:underline"
                 >
                   {link.label}
                   <span className="sr-only"> (opens in a new tab)</span>
@@ -79,6 +87,8 @@ export function ProjectRow({ project, heading: Heading = "h3" }: ProjectRowProps
           </ul>
         )}
       </div>
+
+      <ArrowRight className="pointer-events-none absolute right-0 top-6 hidden size-4 shrink-0 text-slate opacity-0 transition-[opacity,transform,color] duration-200 group-hover:translate-x-0.5 group-hover:text-ink group-hover:opacity-100 group-focus-within:text-ink group-focus-within:opacity-100 md:block" />
     </li>
   );
 }

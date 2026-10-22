@@ -1,5 +1,6 @@
-import { navLinks, site } from "@/data/site";
+import { site } from "@/data/site";
 import { HeaderScrollBorder } from "./header-scroll-border";
+import { SiteNav } from "./site-nav";
 
 /**
  * Site header: identity + primary navigation.
@@ -29,18 +30,7 @@ export function SiteHeader() {
         </a>
 
         <nav aria-label="Primary" className="flex items-center gap-6">
-          <ul className="hidden items-center gap-6 md:flex">
-            {navLinks.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="text-sm text-slate transition-colors hover:text-ink"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <SiteNav />
 
           {/* Filled button, but an anchor to the #contact section. */}
           <a
