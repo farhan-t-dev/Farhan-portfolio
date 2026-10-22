@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { projects } from "@/data/projects";
 import { site } from "@/data/site";
-import { ProjectRow } from "@/components/ui/project-row";
+import { ProjectTile } from "@/components/ui/project-tile";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -10,16 +10,26 @@ export const metadata: Metadata = {
 };
 
 /**
- * Work index — every project in src/data/projects.ts, as hairline rows
- * matching the Services and Stack sections on the homepage.
+ * Work index — every project in src/data/projects.ts as a two-column
+ * contact sheet: screenshot, title, summary, stack, hairline. No boxes;
+ * the rules of the grid do the framing.
  *
- * Masthead first, then a full-width index, the same way the homepage
- * opens: display title, one standfirst, a rule, then the rows. An
- * earlier version set the overtitled h1 beside the standfirst in a
- * two-column band, which put a 4.5rem word too close to the paragraph
- * at lg and squeezed the row grid into the eight columns that remained.
- * The rows now use the whole shell, so the title and stack columns get
- * the width they need at 1024.
+ * The page used to be the same ruled list as Services: title on the left,
+ * summary on the right, eight rows of grey text. It is the page people
+ * scan for evidence, and a screenshot at ~570px is faster to read than a
+ * paragraph at 62ch. Two columns, not three: a third would leave each
+ * frame about 370px wide at 1440, where it stops reading as evidence and
+ * becomes texture.
+ *
+ * The title sits above the plate like a caption, which also means a
+ * project whose screenshot has not been supplied yet still starts its
+ * cell correctly: ProjectThumb renders nothing rather than an empty
+ * frame, so the page fills in as the files land instead of advertising
+ * what is missing. That matters now — most of the eight are still
+ * waiting for screenshots.
+ *
+ * Masthead first, then the grid, the same way the homepage opens:
+ * display title, one standfirst, a rule, then the entries.
  *
  * With no entries the page falls back to the honest empty state it had
  * before there was anything to list. The route has to resolve either way
@@ -74,9 +84,9 @@ export default function WorkPage() {
         </p>
       </header>
 
-      <ul className="mt-10 border-t border-line">
+      <ul className="mt-10 grid grid-cols-1 border-t border-line lg:grid-cols-2">
         {projects.map((project) => (
-          <ProjectRow key={project.slug} project={project} heading="h2" />
+          <ProjectTile key={project.slug} project={project} heading="h2" />
         ))}
       </ul>
 

@@ -3,26 +3,29 @@ import Link from "next/link";
 import type { Project } from "@/data/projects";
 import { isExternalUrl } from "@/lib/utils";
 import { ArrowRight } from "./icons";
+import { ProjectThumb } from "./project-thumb";
 
 type ProjectRowProps = {
   project: Project;
   /**
-   * Heading level, not a rendered string: the row sits under a section
-   * label (h2) on the homepage but under the page title (h1) on /work,
-   * so its own heading is h3 or h2 respectively. Skipping a level breaks
-   * the outline screen-reader users navigate by.
+   * Heading level, not a rendered string: the row sits under the section
+   * label (h2), so its own heading is h3. The prop exists so the row can
+   * be dropped under a page title instead without skipping a level.
    */
   heading?: "h2" | "h3";
 };
 
 /**
- * One project as a hairline row — title and stack on the left, summary
- * and outbound links on the right, in the same 12-column rhythm as the
- * Services and Stack sections so work reads as part of one grid.
+ * One project as a hairline row — thumbnail, title and stack, summary and
+ * outbound links, in the same 12-column rhythm as the Services and Stack
+ * sections so work reads as part of one grid.
  *
- * Deliberately not a card and deliberately imageless: the row has to
- * survive a project whose screenshot has not been added yet, and the
- * case study page is where imagery belongs.
+ * The thumbnail takes the two columns the section label would otherwise
+ * occupy, which is why the homepage's Work band runs the full shell
+ * width (see Section's `wide` variant): placed inside the indented
+ * column, the same thumbnail squeezed the summary to roughly 40
+ * characters a line. At md and below the thumbnail drops out rather than
+ * shrinking to a smudge — /work is where images are legible on a phone.
  *
  * The title link stretches over the whole row, so the row can be opened
  * from anywhere along it — the summary says each entry opens a page, and
@@ -44,7 +47,15 @@ export function ProjectRow({ project, heading: Heading = "h3" }: ProjectRowProps
 
   return (
     <li className="group relative grid grid-cols-1 gap-x-6 gap-y-2 border-b border-line py-5 transition-colors duration-150 hover:bg-mist/60 focus-within:bg-mist/60 md:grid-cols-12 md:py-6">
-      <div className="min-w-0 md:col-span-4 lg:col-span-3">
+      <div className="hidden lg:col-span-2 lg:row-span-2 lg:block">
+        <ProjectThumb
+          project={project}
+          sizes="(min-width: 1312px) 190px, 15vw"
+          className="aspect-[3/2] w-full self-start"
+        />
+      </div>
+
+      <div className="min-w-0 md:col-span-4">
         <Heading className="text-lg font-semibold tracking-tight [overflow-wrap:anywhere]">
           <Link
             href={`/projects/${project.slug}`}
@@ -64,7 +75,7 @@ export function ProjectRow({ project, heading: Heading = "h3" }: ProjectRowProps
         )}
       </div>
 
-      <div className="min-w-0 md:col-span-8 md:pr-7 lg:col-span-9">
+      <div className="min-w-0 md:col-span-8 lg:col-span-6 lg:col-start-7 lg:pr-7">
         <p className="max-w-[62ch] font-serif text-base leading-relaxed text-slate">
           {project.description}
         </p>
