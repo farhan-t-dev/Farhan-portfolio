@@ -33,13 +33,13 @@ export function Contact() {
           {hasEmail ? (
             <a
               href={`mailto:${site.email}`}
-              className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-line underline-offset-[0.2em] transition-colors hover:decoration-signal break-words"
+              className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-line underline-offset-[0.2em] transition-colors hover:decoration-signal"
             >
               {site.email}
             </a>
           ) : (
             // Clearly marked dev placeholder — not a visitor-facing string.
-            <span className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-slate break-words">
+            <span className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-slate">
               <span className="sr-only">Development placeholder: </span>
               add email in src/data/site.ts
             </span>
