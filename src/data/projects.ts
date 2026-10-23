@@ -104,7 +104,7 @@ export const projects: Project[] = [
     liveUrl: "https://www.partsseekr.com/",
     repoUrl: "https://github.com/farhan-t-dev/snapprice",
     featured: true,
-    rank: 2,
+    rank: 3,
   },
   {
     slug: "mindacco",
@@ -182,7 +182,7 @@ export const projects: Project[] = [
     kind: "personal",
     repoUrl: "https://github.com/farhan-t-dev/PropManage",
     featured: true,
-    rank: 3,
+    rank: 2,
   },
   {
     slug: "marketflow",

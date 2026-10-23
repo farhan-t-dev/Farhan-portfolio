@@ -108,13 +108,6 @@ export default function WorkPage() {
           </p>
         </header>
 
-        {/* Availability belongs on this page too: a visitor who lands here
-            from a search result should not have to go back to the homepage
-            to learn that new work is being taken. Full width, on the rule
-            the way the hero sets it, rather than under the standfirst where
-            the 70ch measure would cut the hairline short. */}
-        <Availability className="mt-8 border-t border-line pt-5" />
-
         {featuredProjects.length > 0 && (
           <ul className="mt-10 grid grid-cols-1 border-t border-line lg:grid-cols-2 xl:grid-cols-3">
             {featuredProjects.map((project, index) => (
@@ -154,13 +147,12 @@ export default function WorkPage() {
       <section className="border-t border-line">
         <div className="shell gutter py-14 md:py-20 lg:py-24">
           <div className="max-w-[64ch]">
-            <h2 className="font-display text-[clamp(1.625rem,3.5vw,2.25rem)] text-balance">
+            {/* <h2 className="font-display text-[clamp(1.625rem,3.5vw,2.25rem)] text-balance">
               Something close, but not listed?
-            </h2>
+            </h2> */}
 
-            <p className="mt-5 max-w-[54ch] font-serif text-xl leading-relaxed text-pretty text-slate md:text-2xl">
-              Send the repository and a sentence about what you need. I read
-              the code before quoting.
+            <p className="font-display text-[clamp(1.625rem,3.5vw,2.25rem)] text-balance">
+              Something close, but not listed?
             </p>
 
             {site.email.trim().length > 0 && (
