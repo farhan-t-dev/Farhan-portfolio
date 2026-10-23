@@ -6,7 +6,6 @@ import {
   rankedProjects,
 } from "@/data/projects";
 import { site } from "@/data/site";
-import { Section } from "@/components/sections/section";
 import { Availability } from "@/components/ui/availability";
 import { ProjectRow } from "@/components/ui/project-row";
 import { ProjectTile } from "@/components/ui/project-tile";
@@ -47,12 +46,12 @@ export const metadata: Metadata = {
  * claims. Both lists come from src/data/projects.ts; this file only
  * composes them.
  *
- * The closing ask borrows the homepage's Contact scaffold instead of
- * standing on its own ink band. A full-bleed inverted band worked on the
- * homepage because Process uses the same device; here it was the only
- * one on the page and read as an attachment rather than the end of the
- * site. Same label rail, same serif lead, same display-size `mailto:` —
- * the invitation now lands in the page's own voice.
+ * The closing ask sits on a hairline at the foot of the page: the
+ * question at display size, the instruction in serif, then the address
+ * at the size Contact gives it. No label rail — at the bottom of an
+ * index a "Contact" heading only repeats the nav, and with the rail gone
+ * the block starts on the same left margin as the grid above it, so the
+ * page ends in its own voice rather than in a borrowed template.
  *
  * With no entries the page falls back to the honest empty state it had
  * before there was anything to list. The route has to resolve either way
@@ -148,29 +147,35 @@ export default function WorkPage() {
         )}
       </div>
 
-      {/* Closing ask, on the homepage Contact scaffold rather than an
-          inverted band: same label rail, serif lead and display-size
-          `mailto:`, so it reads as the end of this page instead of an
-          attachment dropped onto it. */}
-      <Section label="Contact">
-        <div className="max-w-[54ch]">
-          <p className="font-serif text-xl leading-relaxed text-ink md:text-2xl">
-            Something close, but not listed? Send the repository and a
-            sentence about what you need. I read the code before quoting.
-          </p>
+      {/* Closing ask. The rail is gone: a "Contact" label at the foot of
+          an index repeats the nav and made the block look like an
+          unfinished section. Starting on the page's left margin lets the
+          question, the instruction and the address carry the close. */}
+      <section className="border-t border-line">
+        <div className="shell gutter py-14 md:py-20 lg:py-24">
+          <div className="max-w-[64ch]">
+            <h2 className="font-display text-[clamp(1.625rem,3.5vw,2.25rem)] text-balance">
+              Something close, but not listed?
+            </h2>
 
-          {site.email.trim().length > 0 && (
-            <p className="mt-8">
-              <a
-                href={`mailto:${site.email}`}
-                className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-line underline-offset-[0.2em] transition-colors hover:decoration-signal"
-              >
-                {site.email}
-              </a>
+            <p className="mt-5 max-w-[54ch] font-serif text-xl leading-relaxed text-pretty text-slate md:text-2xl">
+              Send the repository and a sentence about what you need. I read
+              the code before quoting.
             </p>
-          )}
+
+            {site.email.trim().length > 0 && (
+              <p className="mt-8">
+                <a
+                  href={`mailto:${site.email}`}
+                  className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-line underline-offset-[0.2em] transition-colors hover:decoration-signal"
+                >
+                  {site.email}
+                </a>
+              </p>
+            )}
+          </div>
         </div>
-      </Section>
+      </section>
     </>
   );
 }

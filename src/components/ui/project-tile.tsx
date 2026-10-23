@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Project } from "@/data/projects";
 import { projectLeadImage } from "@/lib/project-media";
 import { cn, isExternalUrl } from "@/lib/utils";
-import { ArrowRight } from "./icons";
+import { ArrowRight, ArrowUpRight } from "./icons";
 import { ProjectMeta } from "./project-meta";
 import { ProjectScope } from "./project-scope";
 import { ProjectThumb } from "./project-thumb";
@@ -148,9 +148,10 @@ export function ProjectTile({
                   href={link.url}
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="inline-flex min-h-11 items-center text-slate underline-offset-4 transition-colors hover:text-ink hover:underline"
+                  className="inline-flex min-h-11 items-center gap-1.5 text-slate underline-offset-4 transition-colors hover:text-ink hover:underline"
                 >
                   {link.label}
+                  <ArrowUpRight className="size-3.5" />
                   <span className="sr-only"> (opens in a new tab)</span>
                 </a>
               </li>
