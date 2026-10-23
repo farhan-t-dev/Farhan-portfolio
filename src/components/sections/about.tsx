@@ -18,14 +18,14 @@ export function About() {
       <div className="flex flex-col items-start gap-6 md:flex-row md:justify-between">
         <div className="w-full max-w-[62ch] space-y-5 font-serif text-lg leading-relaxed text-ink md:min-w-0 md:flex-1">
           <p>
-            I&apos;m <b>Tan Farhan</b>, a freelance full-stack developer. I'd say i work across the
+            I&apos;m <b>Tan Farhan</b>, a freelance full-stack developer. I'd say I work across the
             frontend, backend, and deployment like building new applications, adding
             features to existing ones, integrating APIs, setting up servers,
             moving live applications to new hosts, and tracking down the problem
             that is keeping a project stuck.
           </p>
           <p>
-            I mainly start by understanding the problem. Then I make necessary changes based on the work in a way that its clean and maintainable, and leave the project in a state that the next
+            I mainly start by understanding the problem. Then I make necessary changes based on the work in a way that it's clean and maintainable, and leave the project in a state that the next
             person can work on with confidence. That applies from the first look
             at a codebase to the final deployment.
           </p>
