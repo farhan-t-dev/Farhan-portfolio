@@ -257,6 +257,7 @@ export const projects: Project[] = [
     images: [{ src: "/projects/voice-dialer.webp" }],
     tags: ["React", "Node.js", "Python", "ElevenLabs"],
     kind: "client",
+    repoUrl: "https://github.com/farhan-t-dev/VoiceDialer-V1",
     featured: false,
     rank: 11,
   },
