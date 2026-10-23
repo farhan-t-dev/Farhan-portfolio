@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { projects } from "@/data/projects";
+import { featuredProjects } from "@/data/projects";
 import { ArrowRight } from "@/components/ui/icons";
 import { ProjectRow } from "@/components/ui/project-row";
 import { Section } from "./section";
@@ -19,16 +19,18 @@ import { Section } from "./section";
  *
  * Renders nothing when nothing is featured: an unfinished data file
  * costs the homepage a section, not an empty band on the page.
+ *
+ * Featured rows keep the same ranked order as /work, so the homepage
+ * reads as a selection of the index rather than a second, unrelated
+ * ordering.
  */
 export function Work() {
-  const featured = projects.filter((project) => project.featured);
-
-  if (featured.length === 0) return null;
+  if (featuredProjects.length === 0) return null;
 
   return (
     <Section id="work" label="Work">
       <ul className="border-t border-line">
-        {featured.map((project) => (
+        {featuredProjects.map((project) => (
           <ProjectRow key={project.slug} project={project} />
         ))}
       </ul>
@@ -40,7 +42,7 @@ export function Work() {
         >
           All work
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-          <span className="sr-only"> (case study index)</span>
+          <span className="sr-only"> (project index)</span>
         </Link>
       </p>
     </Section>

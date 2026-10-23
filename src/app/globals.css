@@ -128,6 +128,30 @@
     text-decoration-color, fill, stroke;
 }
 
+/* ------------------------------------------------------------------ *
+ * Stretched links — a title link whose ::after covers the whole cell.
+ *
+ * Its focus ring would otherwise draw a 20px box around the title text
+ * while the actual target is the full row, so the visible boundary lies
+ * about the hit area. The cell draws the ring instead, inset so it stays
+ * inside the hairline that frames it. Both rules are unlayered for the
+ * same reason as the rule above: utilities cannot beat the global
+ * `:focus-visible`, but these can.
+ * ------------------------------------------------------------------ */
+[data-stretched-link]:focus-visible {
+  outline: none;
+}
+
+li:has([data-stretched-link]:focus-visible) {
+  outline: 2px solid var(--color-signal);
+  outline-offset: -2px;
+  /* The cells use `transition-colors`, which includes outline-color: without
+   * this reset the ring fades in from the cell's own ink instead of snapping
+   * on, the same failure the rule above exists to prevent. */
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+}
+
 /* The single orchestrated moment on the page: one entrance for the hero
  * headline. Nothing else animates on scroll — stillness is the point.
  * The reduced-motion block in @layer base already collapses this to

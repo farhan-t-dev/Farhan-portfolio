@@ -3,26 +3,28 @@ import Link from "next/link";
 import type { Project } from "@/data/projects";
 import { isExternalUrl } from "@/lib/utils";
 import { ArrowRight } from "./icons";
+import { ProjectMeta } from "./project-meta";
 
 type ProjectRowProps = {
   project: Project;
   /**
-   * Heading level, not a rendered string: the row sits under the section
-   * label (h2), so its own heading is h3. The prop exists so the row can
-   * be dropped under a page title instead without skipping a level.
+   * Heading level, not a rendered string: on the homepage the row sits
+   * under the section label (h2), so its own heading is h3. The prop
+   * exists so the row can be dropped under a page title instead without
+   * skipping a level.
    */
   heading?: "h2" | "h3";
 };
 
 /**
- * One project as a hairline row — title and stack, summary and outbound
- * links, in the same 12-column rhythm as the Services and Stack sections
- * so work reads as part of one grid.
+ * One project as a hairline row — title, metadata and stack on the left,
+ * summary and outbound links on the right, in the same 12-column rhythm
+ * as the Services and Stack sections so work reads as part of one grid.
  *
- * No screenshot here: the row lives inside the section's indented
- * content column, and a media plate would either push the summaries to
- * an unreadable measure or take the column the section label hangs in.
- * /work is the contact sheet; this is the index that sends people there.
+ * No screenshot: this is the ruled index. On the homepage it sends
+ * people to /work; on /work it is the tier below the large cells, where
+ * nine more entries need to be scannable in a screen or two rather than
+ * one plate each.
  *
  * From md to lg the two blocks stack: at tablet width the indented
  * column is only about 500px, and a side-by-side split leaves the title
@@ -31,9 +33,10 @@ type ProjectRowProps = {
  * to scan; at lg the columns split again.
  *
  * The title link stretches over the whole row, so the row can be opened
- * from anywhere along it — the summary says each entry opens a page, and
- * a 20px-high title alone was a thin target on touch. Outbound links sit
- * above that overlay, and the arrow marks the row as a way in without
+ * from anywhere along it — a 20px-high title alone was a thin target on
+ * touch. The ring therefore belongs to the row, not the title (see
+ * `data-stretched-link` in globals.css). Outbound links sit above that
+ * overlay at 44px tall, and the arrow marks the row as a way in without
  * turning it into a card.
  *
  * Links are filtered through isExternalUrl: a placeholder like
@@ -54,12 +57,15 @@ export function ProjectRow({ project, heading: Heading = "h3" }: ProjectRowProps
         <Heading className="text-lg font-semibold tracking-tight [overflow-wrap:anywhere] lg:text-xl">
           <Link
             href={`/projects/${project.slug}`}
-            className="underline decoration-line underline-offset-4 transition-colors after:absolute after:inset-0 after:content-[''] hover:decoration-signal"
+            data-stretched-link
+            className="underline decoration-slate/70 underline-offset-4 transition-colors after:absolute after:inset-0 after:content-[''] hover:decoration-signal"
           >
             {project.title}
-            <span className="sr-only"> — case study</span>
+            <span className="sr-only">, project note</span>
           </Link>
         </Heading>
+
+        <ProjectMeta project={project} className="mt-1.5" />
 
         {project.tags.length > 0 && (
           <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate">
@@ -71,19 +77,19 @@ export function ProjectRow({ project, heading: Heading = "h3" }: ProjectRowProps
       </div>
 
       <div className="min-w-0 md:col-span-12 lg:col-span-7 lg:pr-7">
-        <p className="max-w-[62ch] font-serif text-base leading-relaxed text-slate">
+        <p className="max-w-[62ch] font-serif text-base leading-relaxed text-pretty text-slate">
           {project.description}
         </p>
 
         {links.length > 0 && (
-          <ul className="relative z-10 mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+          <ul className="relative z-10 mt-2 flex flex-wrap gap-x-6 text-sm">
             {links.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.url}
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="inline-flex min-h-6 items-center text-slate underline-offset-4 transition-colors hover:text-ink hover:underline"
+                  className="inline-flex min-h-11 items-center text-slate underline-offset-4 transition-colors hover:text-ink hover:underline"
                 >
                   {link.label}
                   <span className="sr-only"> (opens in a new tab)</span>

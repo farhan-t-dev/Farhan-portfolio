@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { projects } from "@/data/projects";
-import { publicAssetExists } from "@/lib/media";
+import { projects, rankedProjects } from "@/data/projects";
+import { existingProjectImages, projectImageAlt } from "@/lib/project-media";
+import { projectKindLabel, projectStatusLabel } from "@/lib/project-labels";
 import { isExternalUrl } from "@/lib/utils";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "@/components/ui/icons";
 
@@ -36,31 +37,44 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 /**
- * Case study — one page per project in src/data/projects.ts.
+ * Project note — one page per project in src/data/projects.ts.
+ *
+ * Deliberately a note, not a case study: it carries what the project is,
+ * what was built or changed, and the stack, which is what the data file
+ * actually holds. Calling it a case study promised a situation, a
+ * decision trail and a handover that these entries do not yet have, so
+ * the name follows the content instead of the ambition. When structured
+ * situation/change/handover fields exist, the name can change back.
  *
  * Everything on it comes from the data file: nothing is invented to make
  * the page look fuller, so a project with only a title, summary and tags
- * renders exactly that. The screenshot renders only if its file actually
- * exists in public/ (see src/lib/media.ts) — drop the PNG in and rebuild,
- * and it appears; until then there is no broken image and no substitute.
+ * renders exactly that. Images render only if their files actually exist
+ * in public/ (see src/lib/project-media.ts) — drop the WebP in and
+ * rebuild, and it appears; until then there is no broken image and no
+ * substitute. The first image is the lead plate; any others follow in a
+ * two-column gallery with optional captions.
  *
  * Composition: the title and summary take the left eight columns and a
- * spec rail (stack, links) sits in the right four, top-aligned with the
- * title. On mobile the DOM order is title -> summary -> rail, so the
- * stack never interrupts the reading order. A footer row hands the
- * reader to the next project, because a case study that ends on a
- * screenshot leaves them with only the back button.
+ * spec rail (type, status, stack, links) sits in the right four,
+ * top-aligned with the title. On mobile the DOM order is title ->
+ * summary -> rail, so the stack never interrupts the reading order. A
+ * footer row hands the reader to the next project in the ranked index,
+ * because a note that ends on a screenshot leaves them with only the back
+ * button.
  */
 export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
-  const index = projects.findIndex((p) => p.slug === slug);
+  const project = rankedProjects.find((p) => p.slug === slug);
 
-  if (index === -1) notFound();
+  if (!project) notFound();
 
-  const project = projects[index];
-  const hasImage = publicAssetExists(project.image);
+  const index = rankedProjects.indexOf(project);
+  const images = existingProjectImages(project);
+  const [leadImage, ...moreImages] = images;
   const nextProject =
-    projects.length > 1 ? projects[(index + 1) % projects.length] : null;
+    rankedProjects.length > 1
+      ? rankedProjects[(index + 1) % rankedProjects.length]
+      : null;
 
   // Placeholders ("https://<site-url>") are dropped rather than rendered
   // as broken anchors.
@@ -71,7 +85,7 @@ export default async function ProjectPage({ params }: PageProps) {
     (link): link is { label: string; url: string } => isExternalUrl(link.url),
   );
 
-  const hasRail = project.tags.length > 0 || links.length > 0;
+  const statusLabel = projectStatusLabel(project);
 
   // The root layout owns <main>; this renders the detail body only.
   return (
@@ -96,62 +110,118 @@ export default async function ProjectPage({ params }: PageProps) {
           {project.description}
         </p>
 
-        {hasRail && (
-          <aside
-            aria-label="Project details"
-            className="md:col-span-4 md:col-start-9 md:row-span-2 md:row-start-1 md:self-start"
-          >
-            <dl className="border-t border-line">
-              {project.tags.length > 0 && (
-                <div className="border-b border-line py-4">
-                  <dt className="text-sm text-slate">Stack</dt>
-                  <dd className="mt-2">
-                    <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink">
-                      {project.tags.map((tag) => (
-                        <li key={tag}>{tag}</li>
-                      ))}
-                    </ul>
-                  </dd>
-                </div>
-              )}
+        <aside
+          aria-label="Project details"
+          className="md:col-span-4 md:col-start-9 md:row-span-2 md:row-start-1 md:self-start"
+        >
+          <dl className="border-t border-line">
+            {/* Type always exists, so the rail never renders empty. It
+                matches the small-caps label on /work, in words rather than
+                caps: this is the one place with room to read it. */}
+            <div className="border-b border-line py-4">
+              <dt className="text-sm text-slate">Type</dt>
+              <dd className="mt-1 text-sm text-ink">
+                {projectKindLabel(project)}
+              </dd>
+            </div>
 
-              {links.length > 0 && (
-                <div className="border-b border-line py-4">
-                  <dt className="text-sm text-slate">Links</dt>
-                  <dd className="mt-1 flex flex-col items-start">
-                    {links.map((link) => (
-                      <a
-                        key={link.label}
-                        href={link.url}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        className="group inline-flex min-h-11 items-center gap-1.5 text-sm text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-signal"
-                      >
-                        {link.label}
-                        <ArrowUpRight className="size-3.5 text-slate transition-colors group-hover:text-ink" />
-                        <span className="sr-only"> (opens in a new tab)</span>
-                      </a>
+            {statusLabel && (
+              <div className="border-b border-line py-4">
+                <dt className="text-sm text-slate">Status</dt>
+                <dd className="mt-1 text-sm text-ink">{statusLabel}</dd>
+              </div>
+            )}
+
+            {project.tags.length > 0 && (
+              <div className="border-b border-line py-4">
+                <dt className="text-sm text-slate">Stack</dt>
+                <dd className="mt-2">
+                  <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink">
+                    {project.tags.map((tag) => (
+                      <li key={tag}>{tag}</li>
                     ))}
-                  </dd>
-                </div>
-              )}
-            </dl>
-          </aside>
-        )}
+                  </ul>
+                </dd>
+              </div>
+            )}
+
+            {links.length > 0 && (
+              <div className="border-b border-line py-4">
+                <dt className="text-sm text-slate">Links</dt>
+                <dd className="mt-1 flex flex-col items-start">
+                  {links.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.url}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="group inline-flex min-h-11 items-center gap-1.5 text-sm text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-signal"
+                    >
+                      {link.label}
+                      <ArrowUpRight className="size-3.5 text-slate transition-colors group-hover:text-ink" />
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ))}
+                </dd>
+              </div>
+            )}
+          </dl>
+        </aside>
       </div>
 
-      {hasImage && (
-        // 16:9 slot with object-cover: the file's dimensions are unknown
-        // until it exists, so a fixed ratio keeps the page free of layout
-        // shift. Switch to explicit width/height once the real size is set.
-        <div className="relative mt-10 aspect-video w-full overflow-hidden bg-mist md:mt-14">
-          <Image
-            src={project.image}
-            alt={`${project.title} screenshot`}
-            fill
-            sizes="(min-width: 1312px) 1170px, (min-width: 1024px) 92vw, 100vw"
-            className="object-cover"
-          />
+      {leadImage && (
+        // 16:10 is the ratio the current screenshots were captured at, so
+        // most plates render uncropped; `object-top` only bites on a
+        // taller file. Fixed ratios keep the page free of layout shift
+        // while the real dimensions stay out of the data model.
+        <div className="mt-10 md:mt-14">
+          <figure>
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-mist">
+              <Image
+                src={leadImage.src}
+                alt={projectImageAlt(project, leadImage)}
+                fill
+                sizes="(min-width: 1312px) 1170px, (min-width: 1024px) 92vw, 100vw"
+                className="object-cover object-top"
+              />
+            </div>
+
+            {leadImage.caption && (
+              <figcaption className="mt-3 max-w-[58ch] text-sm leading-relaxed text-slate">
+                {leadImage.caption}
+              </figcaption>
+            )}
+          </figure>
+
+          {moreImages.length > 0 && (
+            <div
+              className={
+                moreImages.length > 1
+                  ? "mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2"
+                  : "mt-6 grid grid-cols-1 gap-6"
+              }
+            >
+              {moreImages.map((image) => (
+                <figure key={image.src}>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-mist">
+                    <Image
+                      src={image.src}
+                      alt={projectImageAlt(project, image)}
+                      fill
+                      sizes="(min-width: 768px) 46vw, 100vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
+
+                  {image.caption && (
+                    <figcaption className="mt-3 max-w-[58ch] text-sm leading-relaxed text-slate">
+                      {image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          )}
         </div>
       )}
 

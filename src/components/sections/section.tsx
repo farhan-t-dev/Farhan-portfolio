@@ -22,7 +22,9 @@ type SectionProps = {
 };
 
 /**
- * The shared section scaffold for the homepage.
+ * The shared section scaffold for the homepage's sections (and for the
+ * closing ask on /work, so the invitation wears the same clothes as the
+ * Contact band it mirrors).
  *
  * Asymmetric Swiss grid, per the approved brief:
  *   desktop — label in cols 1–2, content in cols 3–12

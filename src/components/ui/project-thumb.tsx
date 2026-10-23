@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import type { Project } from "@/data/projects";
-import { publicAssetExists } from "@/lib/media";
+import { projectImageAlt, projectLeadImage } from "@/lib/project-media";
 import { cn } from "@/lib/utils";
 
 type ProjectThumbProps = {
@@ -19,7 +19,7 @@ type ProjectThumbProps = {
 };
 
 /**
- * A project's screenshot, or nothing at all.
+ * A project's lead screenshot, or nothing at all.
  *
  * The slot is sized by the caller. When the file exists the image fills
  * it; when it does not, the slot collapses and the surrounding layout
@@ -27,8 +27,12 @@ type ProjectThumbProps = {
  * coming soon". An absent image is an absent element, which is why every
  * composition that uses this has to hold without it.
  *
- * Existence is checked at build time (src/lib/media.ts), so dropping the
- * PNG into public/projects/ and rebuilding is the whole workflow.
+ * Extra images belong to the project page gallery; a tile only ever
+ * shows the lead, because the index is a contact sheet, not a carousel.
+ *
+ * Existence is checked at build time (src/lib/project-media.ts), so
+ * dropping the WebP into public/projects/ and rebuilding is the whole
+ * workflow.
  */
 export function ProjectThumb({
   project,
@@ -36,13 +40,15 @@ export function ProjectThumb({
   className,
   eager = false,
 }: ProjectThumbProps) {
-  if (!publicAssetExists(project.image)) return null;
+  const image = projectLeadImage(project);
+
+  if (!image) return null;
 
   return (
     <div className={cn("relative overflow-hidden bg-mist", className)}>
       <Image
-        src={project.image}
-        alt={`${project.title} screenshot`}
+        src={image.src}
+        alt={projectImageAlt(project, image)}
         fill
         sizes={sizes}
         loading={eager ? "eager" : "lazy"}

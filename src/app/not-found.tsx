@@ -27,7 +27,7 @@ export default function NotFound() {
         <div className="md:col-span-8">
           <p className="max-w-[54ch] font-serif text-xl leading-relaxed text-slate">
             The link may be out of date, or the project may have moved. Every
-            case study that is live is in the work index.
+            project note that is live is in the work index.
           </p>
 
           <ul className="mt-8 flex flex-wrap gap-x-8 border-t border-line pt-5 text-sm">

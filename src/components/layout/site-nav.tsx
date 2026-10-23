@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 /**
  * Primary section links, with the current area marked.
  *
- * The header is the only persistent orientation cue on a case-study page
+ * The header is the only persistent orientation cue on a project page
  * — the page title changes, but the nav looks identical unless it says
  * where you are. Only "Work" has a second level (the /work index and
  * /projects/<slug> pages share it); the homepage anchors cannot be lit

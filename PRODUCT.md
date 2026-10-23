@@ -43,7 +43,7 @@ A neighbouring portfolio can show more screenshots; it cannot truthfully copy "I
 - Services are parallel offers, not a sequence; the process section is a genuine sequence of four steps.
 - Availability is a claim only the owner can make, and it is expressed as a labelled indicator driven by `site.ts`.
 - The site is **built but not launched**. `siteUrl` is intentionally empty, and the LinkedIn link still carries a placeholder handle; both must be treated as unfinished details, not as facts to design around.
-- Two projects (`mindacco`, `voice-dialer`) exist in the data file but stay commented out pending client consent and a contract check. They must not be surfaced.
+- MindAcco and the voice dialer are included at the owner's request. MindAcco links to its live site and stays in the index below the featured tier; the voice dialer has no public link and stays unfeatured until its screenshot is supplied.
 - No invented credentials: the site carries no employers, years of experience, client logos, testimonials, or benchmark numbers, and the About copy deliberately omits them.
 - Identity: Tan Farhan, Full-stack developer; contact farhanweb20@gmail.com; GitHub at `farhan-t-dev`.
 
@@ -55,8 +55,9 @@ The owner's stated personal register is informal and unpolished (the existing Ab
 
 ## Evidence on Hand
 
-- Eight project entries with real descriptions, tags, and outcomes; two with public repository links (PropManage, MarketFlow), several with live URLs.
-- One project screenshot: `public/projects/fletched.webp` (converted from the supplied PNG, 1.65 MB → 78 KB). The other seven projects reference `/projects/<slug>.png` files that do not exist yet; the owner has confirmed they will be supplied at those paths, so listings stay in place rather than being hidden.
+- Thirteen project entries with real descriptions, tags, and outcomes; eight with public repository links, some with live URLs. Two entries carry a lifecycle status: Cognabase is `private` and Elonmarket is `retired`, both with no outbound links.
+- Engagement kinds are owner-confirmed, not inferred: client (Fletched, Parts Seekr, MindAcco, Insurance schematic builder, Checkin, AI voice outreach dialer, Cognabase, Elonmarket), migration (Live marketplace migration), personal (PropManage, MarketFlow, GitHub Repository Finder, Freelance Tracker).
+- Nine project screenshots in `public/projects/`, sourced from live sites or the repositories' own `docs/screenshots` folders and compressed to WebP. Four entries (`marketplace-migration`, `checkin`, `voice-dialer`, `freelance-tracker`) have no image; the listings stay in place. `ProjectThumb` renders nothing rather than an empty frame, and the featured marketplace migration shows a short scope ledger (what moved) in its plate slot instead.
 - One portrait: `public/images/Me.webp` (1031×1375).
 - An icon at `src/app/icon.svg`.
 - Absent, and not to be fabricated: testimonials, client names beyond the products themselves, performance metrics, pricing, timelines, case-study results, or press.

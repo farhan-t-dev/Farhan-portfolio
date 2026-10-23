@@ -13,8 +13,7 @@ import { Contact } from "@/components/sections/contact";
  *
  * Order is the pitch order for freelance clients (primary audience):
  * proof -> what I take on -> how it runs -> with what -> who -> how to
- * reach me. The featured projects show here; the full case-study index
- * is /work.
+ * reach me. The featured projects show here; the full index is /work.
  */
 export default function Home() {
   return (
