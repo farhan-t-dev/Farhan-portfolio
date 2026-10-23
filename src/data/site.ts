@@ -50,7 +50,7 @@ export const site: SiteConfig = {
 
   links: [
     { label: "GitHub", href: "https://github.com/farhan-t-dev" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/your-handle" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/tanverul-islam-farhan/" },
   ],
 };
 
