@@ -30,8 +30,8 @@ export function About() {
             at a codebase to the final deployment.
           </p>
           <p>
-            Outside work I'm too deep into tech, watched more anime than i can count,
-            and I play a lot of AAA and FPS games, mostly Valorant...
+            Outside work I'm too deep into tech, watched more anime than I can count,
+            and I play a lot of AAA and FPS games, mostly Valorant.
           </p>
         </div>
         {/* Rectangular, sharp corners: no radius, shadow, or effects —
