@@ -34,6 +34,7 @@ export type Project = {
   kind: ProjectKind;
   liveUrl?: string;
   repoUrl?: string;
+  appStoreUrl?: string;
   /** Lifecycle note for work that is no longer publicly linkable. */
   status?: "private" | "retired";
   /**
@@ -85,6 +86,7 @@ export const projects: Project[] = [
     kind: "client",
     liveUrl: "https://www.fletchedco.com/",
     repoUrl: "https://github.com/farhan-t-dev/fletched",
+    appStoreUrl: "https://apps.apple.com/us/app/fletched-archery-calculator/id6759381081",
     featured: true,
     rank: 1,
   },
@@ -104,7 +106,7 @@ export const projects: Project[] = [
     liveUrl: "https://www.partsseekr.com/",
     repoUrl: "https://github.com/farhan-t-dev/snapprice",
     featured: true,
-    rank: 3,
+    rank: 4,
   },
   {
     slug: "mindacco",
@@ -117,7 +119,7 @@ export const projects: Project[] = [
         alt: "MindAcco landing page: the headline “Structure for habits that survive a busy week” beside a weekly plan panel listing Deep Work and Daily Steps.",
       },
     ],
-    tags: ["Supabase", "Vercel"],
+    tags: ["Next.js","React","Supabase", "Vercel"],
     kind: "client",
     liveUrl: "https://www.mindacco.com/",
     featured: false,
@@ -128,8 +130,8 @@ export const projects: Project[] = [
     title: "Live marketplace migration",
     description:
       "Moved a production Laravel marketplace from an old VPS to a new Docker Compose server: application, MySQL database, uploaded media, scheduled jobs, and the domain cutover with SSL.",
-    images: [{ src: "/projects/marketplace-migration.webp" }],
-    tags: ["Laravel", "MySQL", "Docker Compose", "Linux"],
+    images: [{ src: "/projects/marketplace_migration.webp" }],
+    tags: ["Laravel", "MySQL", "Grafana", "Docker Compose", "Linux"],
     kind: "migration",
     scope: [
       "Laravel application",
@@ -139,7 +141,7 @@ export const projects: Project[] = [
       "Domain and SSL",
     ],
     featured: true,
-    rank: 6,
+    rank: 3,
   },
   {
     slug: "schematic-builder",
@@ -200,7 +202,7 @@ export const projects: Project[] = [
     liveUrl: "https://marketflow-36gz.onrender.com",
     repoUrl: "https://github.com/farhan-t-dev/b2b-marketplace",
     featured: true,
-    rank: 4,
+    rank: 5,
   },
   {
     slug: "github-repo-finder",
@@ -231,11 +233,11 @@ export const projects: Project[] = [
         alt: "Cognabase landing page: “Deploy Supabase On Demand”, with Start Building and Sign In buttons on a dark background.",
       },
     ],
-    tags: ["TypeScript", "Supabase", "Self-hosting"],
+    tags: ["Next.js", "N8N", "Coolify", "Supabase", "Self-hosting"],
     kind: "client",
-    status: "private",
+    status: "retired",
     featured: true,
-    rank: 5,
+    rank: 6,
   },
   {
     slug: "checkin",
@@ -287,6 +289,7 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Vite", "Supabase", "Solana"],
     kind: "client",
     status: "retired",
+    repoUrl: "https://github.com/ElonDevs/Elonmarket",
     featured: false,
     rank: 13,
   },

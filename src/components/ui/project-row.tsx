@@ -47,6 +47,7 @@ export function ProjectRow({ project, heading: Heading = "h3" }: ProjectRowProps
   const links = [
     { label: "Live site", url: project.liveUrl },
     { label: "Repository", url: project.repoUrl },
+    { label: "App Store", url: project.appStoreUrl},
   ].filter(
     (link): link is { label: string; url: string } => isExternalUrl(link.url),
   );
