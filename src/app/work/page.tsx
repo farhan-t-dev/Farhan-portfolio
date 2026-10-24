@@ -147,10 +147,6 @@ export default function WorkPage() {
       <section className="border-t border-line">
         <div className="shell gutter py-14 md:py-20 lg:py-24">
           <div className="max-w-[64ch]">
-            {/* <h2 className="font-display text-[clamp(1.625rem,3.5vw,2.25rem)] text-balance">
-              Something close, but not listed?
-            </h2> */}
-
             <p className="font-display text-[clamp(1.625rem,3.5vw,2.25rem)] text-balance">
               Something close, but not listed?
             </p>
@@ -159,7 +155,7 @@ export default function WorkPage() {
               <p className="mt-8">
                 <a
                   href={`mailto:${site.email}`}
-                  className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-line underline-offset-[0.2em] transition-colors hover:decoration-signal"
+                  className="inline-flex min-h-11 items-center font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-slate/70 underline-offset-[0.2em] transition-colors hover:decoration-signal"
                 >
                   {site.email}
                 </a>

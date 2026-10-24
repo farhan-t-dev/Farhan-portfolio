@@ -25,7 +25,7 @@ export function SiteHeader() {
       <div className="shell gutter flex h-14 items-center justify-between gap-4 md:h-16 md:gap-8">
         <a
           href="/"
-          className="text-lg font-semibold tracking-tight text-ink"
+          className="inline-flex min-h-11 items-center text-lg font-semibold tracking-tight text-ink"
         >
           {site.name}
         </a>

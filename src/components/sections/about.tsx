@@ -12,11 +12,13 @@ import { Section } from "./section";
 export function About() {
   return (
     <Section id="about" label="About" tone="mist">
-      {/* Text first in the DOM so mobile stacks copy above the portrait;
-          from md up it becomes a row — text left, portrait top-aligned
-          in the right column. */}
-      <div className="flex flex-col items-start gap-6 md:flex-row md:justify-between">
-        <div className="w-full max-w-[62ch] space-y-5 font-serif text-lg leading-relaxed text-ink md:min-w-0 md:flex-1">
+      {/* Text first in the DOM so mobile stacks copy above the portrait.
+          The row starts at lg, not md: at 768px a side-by-side portrait
+          left the prose a 219px column (~24 characters per line), which
+          is unreadable in the section that has to build trust. Stacked,
+          the text keeps the full content column on tablets. */}
+      <div className="flex flex-col items-start gap-6 lg:flex-row lg:justify-between">
+        <div className="w-full max-w-[62ch] space-y-5 font-serif text-lg leading-relaxed text-ink text-pretty lg:min-w-0 lg:flex-1">
           <p>
             I&apos;m <b>Tan Farhan</b>, a freelance full-stack developer. I'd say I work across the
             frontend, backend, and deployment like building new applications, adding
@@ -42,8 +44,8 @@ export function About() {
           alt="Portrait of Farhan, full-stack developer"
           width={1031}
           height={1375}
-          sizes="(min-width: 1024px) 280px, (min-width: 768px) 200px, 70vw"
-          className="block aspect-[1031/1375] h-auto w-full max-w-xs shrink-0 md:max-w-none md:w-[200px] lg:w-[264px]"
+          sizes="(min-width: 1024px) 264px, 70vw"
+          className="block aspect-[1031/1375] h-auto w-full max-w-xs shrink-0 lg:max-w-none lg:w-[264px]"
         />
       </div>
     </Section>

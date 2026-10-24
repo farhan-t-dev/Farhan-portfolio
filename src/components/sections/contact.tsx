@@ -33,7 +33,7 @@ export function Contact() {
           {hasEmail ? (
             <a
               href={`mailto:${site.email}`}
-              className="font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-line underline-offset-[0.2em] transition-colors hover:decoration-signal"
+              className="inline-flex min-h-11 items-center font-display text-[clamp(1.2rem,4vw,2.5rem)] text-ink underline decoration-slate/70 underline-offset-[0.2em] transition-colors hover:decoration-signal"
             >
               {site.email}
             </a>
@@ -54,7 +54,7 @@ export function Contact() {
                   href={link.href}
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="text-sm text-slate underline-offset-4 transition-colors hover:text-ink hover:underline"
+                  className="inline-flex min-h-11 items-center text-sm text-slate underline-offset-4 transition-colors hover:text-ink hover:underline"
                 >
                   {link.label}
                   <span className="sr-only"> (opens in a new tab)</span>
