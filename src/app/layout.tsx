@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  verification: {
+    google: "L8pzcCx6cbEWA0GROsbpBEdDZmKDIJGBsyWDIQp36eY",
+  },
   ...socialMetadata({
     title: `${site.name} — ${site.role}`,
     description: site.description,
