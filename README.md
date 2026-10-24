@@ -5,6 +5,7 @@
 **Full-stack developer. I build web applications, and finish the ones already started.**
 
 [![Live site](https://img.shields.io/badge/live-frhan--portfolio.vercel.app-151515?style=flat-square)](https://frhan-portfolio.vercel.app)
+[![CI](https://github.com/farhan-t-dev/farhan-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/farhan-t-dev/farhan-portfolio/actions/workflows/ci.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16.4-000?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-087EA4?style=flat-square&logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
