@@ -34,6 +34,21 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
+/**
+ * Person structured data. `sameAs` is the part that does the work: it
+ * tells search engines that the GitHub and LinkedIn profiles are the same
+ * person as this site. Links come from site.ts, so a new profile is added
+ * in one place.
+ */
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.role,
+  url: site.siteUrl,
+  sameAs: site.links.map((link) => link.href),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -45,6 +60,13 @@ export default function RootLayout({
       className={`${archivo.variable} ${newsreader.variable}`}
     >
       <body className="flex min-h-dvh flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-paper"
