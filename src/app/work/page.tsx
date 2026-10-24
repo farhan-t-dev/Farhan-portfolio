@@ -6,14 +6,22 @@ import {
   rankedProjects,
 } from "@/data/projects";
 import { site } from "@/data/site";
+import { socialMetadata } from "@/lib/social-metadata";
 import { Availability } from "@/components/ui/availability";
 import { ProjectRow } from "@/components/ui/project-row";
 import { ProjectTile } from "@/components/ui/project-tile";
 
+const description =
+  "Every project in one index — what each system does, what was built or changed, and the stack it runs on.";
+
 export const metadata: Metadata = {
   title: "Work",
-  description:
-    "Every project in one index — what each system does, what was built or changed, and the stack it runs on.",
+  description,
+  ...socialMetadata({
+    title: "Work",
+    description,
+    path: "/work",
+  }),
 };
 
 /**

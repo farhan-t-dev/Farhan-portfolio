@@ -18,8 +18,10 @@ export type SiteConfig = {
   role: string;
   /** One honest sentence — capabilities, not credentials. Used for SEO description. */
   description: string;
+  /** The poster line. Shared by the hero and the social card so they cannot drift. */
+  tagline: string;
   email: string;
-  /** Absolute origin, e.g. "https://example.com". Leave empty until a domain exists. */
+  /** Absolute origin, e.g. "https://example.com". Social cards need it to build absolute image URLs. */
   siteUrl: string;
   /**
    * The availability indicator. This is a claim only you can make:
@@ -39,8 +41,9 @@ export const site: SiteConfig = {
   role: "Full-stack developer",
   description:
     "Full-stack developer building, fixing, and shipping web applications — new features, API integrations, and deployment for founders, agencies, and teams.",
+  tagline: "I build web applications, and finish the ones already started.",
   email: "farhanweb20@gmail.com",
-  siteUrl: "",
+  siteUrl: "https://frhan-portfolio.vercel.app",
   // ---------------------------------------------------------------
 
   availability: {

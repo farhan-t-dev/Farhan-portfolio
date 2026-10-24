@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { projects, rankedProjects } from "@/data/projects";
 import { existingProjectImages, projectImageAlt } from "@/lib/project-media";
 import { projectKindLabel, projectStatusLabel } from "@/lib/project-labels";
+import { socialMetadata } from "@/lib/social-metadata";
 import { isExternalUrl } from "@/lib/utils";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "@/components/ui/icons";
 
@@ -33,6 +34,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: project.title,
     description: project.description,
+    ...socialMetadata({
+      title: project.title,
+      description: project.description,
+      path: `/projects/${project.slug}`,
+      type: "article",
+      // The segment's opengraph-image route supplies the card. Declaring an
+      // image here would override it.
+      image: false,
+    }),
   };
 }
 

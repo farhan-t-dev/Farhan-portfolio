@@ -20,7 +20,7 @@ export function Hero() {
     <section className="shell gutter pt-14 pb-16 md:pt-20 md:pb-20 lg:pt-28 lg:pb-24">
       <div className="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-12">
         <h1 className="font-display animate-hero-in text-[clamp(2.25rem,7.5vw,6.25rem)] text-balance md:col-span-11">
-          I build web applications, and finish the ones already started.
+          {site.tagline}
         </h1>
 
         <p className="max-w-[62ch] font-serif text-lg leading-relaxed text-slate md:col-span-7 md:text-xl">

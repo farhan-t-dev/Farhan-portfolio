@@ -1,34 +1,30 @@
 import type { Metadata, Viewport } from "next";
 import { archivo, newsreader } from "@/lib/fonts";
 import { site } from "@/data/site";
+import { socialMetadata } from "@/lib/social-metadata";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import "./globals.css";
 
 /**
  * Metadata is derived from src/data/site.ts so identity lives in one place.
- * `metadataBase` is only set once a real domain exists; leaving it empty
- * avoids asserting a URL we cannot back up.
+ * `metadataBase` is the production origin: social crawlers need an absolute
+ * og:image URL, not a path. The image itself is supplied by the root
+ * opengraph-image file convention, so no images are declared here; Twitter
+ * inherits the same image in post-processing.
  */
 export const metadata: Metadata = {
-  ...(site.siteUrl ? { metadataBase: new URL(site.siteUrl) } : {}),
+  metadataBase: new URL(site.siteUrl),
   title: {
     default: `${site.name} — ${site.role}`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
-  openGraph: {
+  ...socialMetadata({
     title: `${site.name} — ${site.role}`,
     description: site.description,
-    type: "website",
-    locale: "en_US",
-    ...(site.siteUrl ? { url: site.siteUrl } : {}),
-  },
-  twitter: {
-    card: "summary",
-    title: `${site.name} — ${site.role}`,
-    description: site.description,
-  },
+    image: false,
+  }),
 };
 
 export const viewport: Viewport = {
