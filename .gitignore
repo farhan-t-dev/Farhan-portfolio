@@ -18,6 +18,7 @@
 .DS_Store
 *.pem
 /.impeccable
+opencode.json
 
 # debug
 npm-debug.log*
