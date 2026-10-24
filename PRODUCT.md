@@ -42,8 +42,8 @@ A neighbouring portfolio can show more screenshots; it cannot truthfully copy "I
 - Contact is a plain `mailto:` link. No form, no backend, no analytics, no newsletter.
 - Services are parallel offers, not a sequence; the process section is a genuine sequence of four steps.
 - Availability is a claim only the owner can make, and it is expressed as a labelled indicator driven by `site.ts`.
-- The site is **built but not launched**. `siteUrl` is intentionally empty, and the LinkedIn link still carries a placeholder handle; both must be treated as unfinished details, not as facts to design around.
-- MindAcco and the voice dialer are included at the owner's request. MindAcco links to its live site and stays in the index below the featured tier; the voice dialer has no public link and stays unfeatured until its screenshot is supplied.
+- The site is **live** at `https://frhan-portfolio.vercel.app`. `site.siteUrl` is set to that origin, and the LinkedIn link points to the owner's profile.
+- MindAcco and the voice dialer are included at the owner's request. MindAcco links to its live site and stays in the index below the featured tier; the voice dialer has no public live link and stays unfeatured until its screenshot is supplied.
 - No invented credentials: the site carries no employers, years of experience, client logos, testimonials, or benchmark numbers, and the About copy deliberately omits them.
 - Identity: Tan Farhan, Full-stack developer; contact farhanweb20@gmail.com; GitHub at `farhan-t-dev`.
 
@@ -55,9 +55,9 @@ The owner's stated personal register is informal and unpolished (the existing Ab
 
 ## Evidence on Hand
 
-- Thirteen project entries with real descriptions, tags, and outcomes; eight with public repository links, some with live URLs. Two entries carry a lifecycle status: Cognabase is `private` and Elonmarket is `retired`, both with no outbound links.
+- Thirteen project entries with real descriptions, tags, and outcomes; ten with public repository links, some with live URLs. Two entries carry a lifecycle status: Cognabase and Elonmarket are `retired`, both with no outbound links.
 - Engagement kinds are owner-confirmed, not inferred: client (Fletched, Parts Seekr, MindAcco, Insurance schematic builder, Checkin, AI voice outreach dialer, Cognabase, Elonmarket), migration (Live marketplace migration), personal (PropManage, MarketFlow, GitHub Repository Finder, Freelance Tracker).
-- Nine project screenshots in `public/projects/`, sourced from live sites or the repositories' own `docs/screenshots` folders and compressed to WebP. Four entries (`marketplace-migration`, `checkin`, `voice-dialer`, `freelance-tracker`) have no image; the listings stay in place. `ProjectThumb` renders nothing rather than an empty frame, and the featured marketplace migration shows a short scope ledger (what moved) in its plate slot instead.
+- Eleven project screenshots in `public/projects/`, sourced from live sites or the repositories' own `docs/screenshots` folders and compressed to WebP. Two entries (`voice-dialer`, `freelance-tracker`) have no image; the listings stay in place. `ProjectThumb` renders nothing rather than an empty frame, and a featured project with no screenshot can show a short scope ledger in its plate slot instead.
 - One portrait: `public/images/Me.webp` (1031×1375).
 - An icon at `src/app/icon.svg`.
 - Absent, and not to be fabricated: testimonials, client names beyond the products themselves, performance metrics, pricing, timelines, case-study results, or press.
