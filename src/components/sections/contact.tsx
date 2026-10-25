@@ -46,6 +46,12 @@ export function Contact() {
           )}
         </p>
 
+        {site.contactNote && (
+          <p className="mt-4 text-sm text-slate leading-relaxed">
+            {site.contactNote}
+          </p>
+        )}
+
         {links.length > 0 && (
           <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
             {links.map((link) => (

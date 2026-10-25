@@ -31,6 +31,11 @@ export type SiteConfig = {
    * Set to `null` to hide the indicator entirely.
    */
   availability: { status: AvailabilityStatus; label: string } | null;
+  /**
+   * Reply speed and reachable window, shown only in the Contact section.
+   * This is a claim only the owner can make.
+   */
+  contactNote: string;
   /** Profile links shown in the header and contact area. */
   links: NavLink[];
 };
@@ -50,6 +55,8 @@ export const site: SiteConfig = {
     status: "available",
     label: "Currently available for new projects",
   },
+  contactNote:
+    "Reply within 24 hours. Available 09:00–20:00 UTC+6, overlap with Europe mornings and US evenings.",
 
   links: [
     { label: "GitHub", href: "https://github.com/farhan-t-dev" },
